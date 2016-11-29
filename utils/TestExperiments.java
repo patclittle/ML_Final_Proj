@@ -9,6 +9,7 @@ import ml.classifiers.GradientDescentClassifier;
 import ml.classifiers.KNNClassifier;
 import ml.classifiers.TwoLayerNN;
 import ml.data.CrossValidationSet;
+import ml.data.DTpreprocessor;
 import ml.data.DataPreprocessor;
 import ml.data.DataSet;
 import ml.data.DataSetSplit;
@@ -35,8 +36,8 @@ public class TestExperiments {
 		cs.add(new TwoLayerNN(7));
 		
 		ArrayList<DataPreprocessor> pps = new ArrayList<DataPreprocessor>();
-		//pps.add(MOLLIES);
 		//pps.add(RANDOM);
+		pps.add(new DTpreprocessor());
 		
 		for (DataSet data : datasets){
 			printTablesForClassifiers(pps,cs,data,50,10,10);

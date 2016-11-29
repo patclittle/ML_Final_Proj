@@ -14,6 +14,7 @@ import ml.data.DataPreprocessor;
 import ml.data.DataSet;
 import ml.data.DataSetSplit;
 import ml.data.Example;
+import ml.data.RandomPreprocessor;
 
 /**
  * Class for the experimentation for the homework.
@@ -28,7 +29,6 @@ public class TestExperiments {
 	public static void main(String[] args) {
 		//TO-DO: Read in data
 		ArrayList<DataSet> datasets = new ArrayList<DataSet>();
-		//TO-DO: uncomment the stuff from before
 		ArrayList<Classifier> cs = new ArrayList<Classifier>();
 		cs.add(new DecisionTreeClassifier());
 		cs.add(new GradientDescentClassifier());
@@ -36,7 +36,7 @@ public class TestExperiments {
 		cs.add(new TwoLayerNN(7));
 		
 		ArrayList<DataPreprocessor> pps = new ArrayList<DataPreprocessor>();
-		//pps.add(RANDOM);
+		pps.add(new RandomPreprocessor());
 		pps.add(new DTpreprocessor());
 		
 		for (DataSet data : datasets){
@@ -108,8 +108,7 @@ public class TestExperiments {
 		double[] toReturn = new double[nFeatures];
 		toReturn[0] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		for (int i=1; i<nFeatures; i++){
-			//TO DO- uncomment
-			//data = pp.preProcessData(data,i);
+			data = pp.preprocessTrain(data,i);
 			toReturn[i] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		}
 		return toReturn;

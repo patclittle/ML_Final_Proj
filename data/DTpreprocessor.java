@@ -31,17 +31,7 @@ public class DTpreprocessor extends DataPreprocessor{
 	 */
 	public DataSet preprocessTest(DataSet test) {
 		ArrayList<Example> examples = test.getData();
-		DataSet newData = new DataSet(usableFeatures);
-		//remove unwanted features
-		for(Example e:examples){
-			for(Integer f: unwantedFeatures){
-				e.getFeatureSet().remove(f);
-			}
-		}
-		newData.addData(examples);
-		System.out.println(unwantedFeatures);
-		return newData;
-		
+		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 	}	
 	
 	public DataSet preprocessTrain(DataSet data, int n){

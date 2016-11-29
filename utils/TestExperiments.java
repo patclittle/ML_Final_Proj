@@ -9,6 +9,7 @@ import ml.classifiers.GradientDescentClassifier;
 import ml.classifiers.KNNClassifier;
 import ml.classifiers.TwoLayerNN;
 import ml.data.CrossValidationSet;
+import ml.data.DataPreprocessor;
 import ml.data.DataSet;
 import ml.data.DataSetSplit;
 import ml.data.Example;
@@ -33,14 +34,14 @@ public class TestExperiments {
 		cs.add(new KNNClassifier());
 		cs.add(new TwoLayerNN(7));
 		
-		/**ArrayList<PreProcessor> pps = new ArrayList<PreProcessor>();
-		pps.add(MOLLIES);
-		pps.add(RANDOM);
+		ArrayList<DataPreprocessor> pps = new ArrayList<DataPreprocessor>();
+		//pps.add(MOLLIES);
+		//pps.add(RANDOM);
 		
 		for (DataSet data : datasets){
 			printTablesForClassifiers(pps,cs,data,50,10,10);
 		}
-		*/
+		
 		
 	}
 	
@@ -102,30 +103,30 @@ public class TestExperiments {
 		return averageList(nFoldAvgs);
 	}
 	
-	//private static double[] getNAccuraciesForPreProcessor(PreProcessor pp, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
-	private static double[] getNAccuraciesForPreProcessor(Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
+	private static double[] getNAccuraciesForPreProcessor(DataPreprocessor pp, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
 		double[] toReturn = new double[nFeatures];
 		toReturn[0] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		for (int i=1; i<nFeatures; i++){
+			//TO DO- uncomment
 			//data = pp.preProcessData(data,i);
 			toReturn[i] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		}
 		return toReturn;
 	}
 	
-	/**
-	private static void printTableForPreProcessors(PreProcessor[] pps, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
-		for (PreProcessor pp : pps){
+	
+	private static void printTableForPreProcessors(ArrayList<DataPreprocessor> pps, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
+		for (DataPreprocessor pp : pps){
 			printRowFromList(getNAccuraciesForPreProcessor(pp,c,data,iterationsToAvg,nFolds,nFeatures));
 		}
-	}*/
+	}
 	
-	/**
-	private static void printTablesForClassifiers(PreProcessor[] pps, Classifier[] cs, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
+	
+	private static void printTablesForClassifiers(ArrayList<DataPreprocessor> pps, ArrayList<Classifier> cs, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
 		for (Classifier c : cs){
 			printTableForPreProcessors(pps,c,data,iterationsToAvg,nFolds,nFeatures);
 		}
-	}*/
+	}
 	
 	private static void printRowFromList(double[] toPrint){
 		System.out.print(toPrint[0]);

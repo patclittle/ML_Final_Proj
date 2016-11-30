@@ -30,12 +30,12 @@ public class DTpreprocessor extends DataPreprocessor{
 	 * @return
 	 */
 	public DataSet preprocessTest(DataSet test) {
-		ArrayList<Example> examples = test.getData();
+		ArrayList<Example> examples = (ArrayList<Example>) test.getData().clone();
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 	}	
 	
 	public DataSet preprocessTrain(DataSet data, int n){
-		ArrayList<Example> examples = data.getData();
+		ArrayList<Example> examples = (ArrayList<Example>) data.getData().clone();
 		Set<Integer> features = data.getAllFeatureIndices();
 		if(n >= features.size() + 1){
 			throw new RuntimeException("Trying to eliminate too many features");

@@ -27,8 +27,9 @@ import ml.data.RandomPreprocessor;
 public class TestExperiments {
 	
 	public static void main(String[] args) {
-		//TO-DO: Read in data
 		ArrayList<DataSet> datasets = new ArrayList<DataSet>();
+		datasets.add(new DataSet("/Users/plittle/workspace/ML_Final_Proj/src/kr-vs-kp.data.csv",DataSet.CSVFILE));
+		//datasets.add(new DataSet("/Users/plittle/workspace/ML_Final_Proj/src/titanic-train.perc.csv",DataSet.CSVFILE));
 		ArrayList<Classifier> cs = new ArrayList<Classifier>();
 		cs.add(new DecisionTreeClassifier());
 		cs.add(new GradientDescentClassifier());
@@ -40,7 +41,7 @@ public class TestExperiments {
 		pps.add(new DTpreprocessor());
 		
 		for (DataSet data : datasets){
-			printTablesForClassifiers(pps,cs,data,50,10,10);
+			printTablesForClassifiers(pps,cs,data,1,10,5);
 		}
 		
 		

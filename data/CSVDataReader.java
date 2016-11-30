@@ -48,7 +48,6 @@ public class CSVDataReader implements Iterator<Example>{
 			
 			// parse the line
 			String[] parts = nextLine.split(",");
-			
 			data.setLabel(Double.parseDouble(parts[labelIndex]));
 	
 			int featureIndex = 0;

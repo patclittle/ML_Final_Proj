@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.AbstractMap;
 import java.util.Map;
 
@@ -32,7 +34,8 @@ public class DTpreprocessor extends DataPreprocessor{
 	public DataSet preprocessTest(DataSet test) {
 		ArrayList<Example> examples = (ArrayList<Example>) test.getData().clone();
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
-	}	
+	}
+	
 	
 	public DataSet preprocessTrain(DataSet data, int n){
 		ArrayList<Example> examples = (ArrayList<Example>) data.getData().clone();
@@ -64,6 +67,7 @@ public class DTpreprocessor extends DataPreprocessor{
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 
 	}
+	
 
 	private double averageTrainingError(ArrayList<Example> data, int featureIndex){		
 		ArrayList<Example>[] splits = splitData(data, featureIndex);

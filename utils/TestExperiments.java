@@ -41,7 +41,7 @@ public class TestExperiments {
 		pps.add(new DTpreprocessor());
 		
 		for (DataSet data : datasets){
-			printTablesForClassifiers(pps,cs,data,1,10,5);
+			printTablesForClassifiers(pps,cs,data,1,10,3);
 		}
 		
 		
@@ -107,10 +107,11 @@ public class TestExperiments {
 	
 	private static double[] getNAccuraciesForPreProcessor(DataPreprocessor pp, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
 		double[] toReturn = new double[nFeatures];
+		DataSet newData = null;
 		toReturn[0] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		for (int i=1; i<nFeatures; i++){
-			data = pp.preprocessTrain(data,i);
-			toReturn[i] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
+			newData = pp.preprocessTrain(data,i);
+			toReturn[i] = getAccuracyForClassifier(c,newData,iterationsToAvg,nFolds);
 		}
 		return toReturn;
 	}

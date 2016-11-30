@@ -32,12 +32,14 @@ public class DataPreprocessor {
 	protected DataSet returnCopyWithFeatures(ArrayList<Example> examples, HashMap<Integer,String> usableFeatures, ArrayList<Integer> unwantedFeatures){
 		DataSet newData = new DataSet(usableFeatures);
 		//remove unwanted features
+		Example newExample = null;
 		for(Example e:examples){
+			newExample = new Example(e);
 			for(Integer f: unwantedFeatures){
-				e.getFeatureSet().remove(f);
+				newExample.getFeatureSet().remove(f);
 			}
+			newData.addData(newExample);
 		}
-		newData.addData(examples);
 		return newData;
 	}
 	

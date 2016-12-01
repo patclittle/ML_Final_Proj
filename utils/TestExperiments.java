@@ -73,7 +73,7 @@ public class TestExperiments {
 	 * @param nFolds - the number of folds to train and test on
 	 * @return a list of the accuracy of the classifier on each split
 	 */
-	private static double[] testNFold(CrossValidationSet cvs, Classifier c, int nFolds){
+	public static double[] testNFold(CrossValidationSet cvs, Classifier c, int nFolds){
 		double[] toReturn = new double[nFolds];
 		for (int i = 0; i<nFolds; i++){
 			DataSetSplit split = cvs.getValidationSet(i);
@@ -88,7 +88,7 @@ public class TestExperiments {
 	 * @param toAverage - the list to average
 	 * @return the average of the list
 	 */
-	private static double averageList(double[] toAverage){
+	public static double averageList(double[] toAverage){
 		double toReturn = 0.0;
 		for (double d : toAverage){
 			toReturn+=d;

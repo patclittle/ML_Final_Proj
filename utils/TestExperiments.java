@@ -8,6 +8,7 @@ import ml.classifiers.DecisionTreeClassifier;
 import ml.classifiers.GradientDescentClassifier;
 import ml.classifiers.KNNClassifier;
 import ml.classifiers.TwoLayerNN;
+import ml.data.AblationPreprocessor;
 import ml.data.CrossValidationSet;
 import ml.data.DTpreprocessor;
 import ml.data.DataPreprocessor;
@@ -39,6 +40,7 @@ public class TestExperiments {
 		ArrayList<DataPreprocessor> pps = new ArrayList<DataPreprocessor>();
 		pps.add(new RandomPreprocessor());
 		pps.add(new DTpreprocessor());
+		pps.add(new AblationPreprocessor());
 		
 		for (DataSet data : datasets){
 			printTablesForClassifiers(pps,cs,data,1,10,3);
@@ -110,6 +112,9 @@ public class TestExperiments {
 		DataSet newData = null;
 		toReturn[0] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
 		for (int i=1; i<nFeatures; i++){
+			if(pp.getClass()== AblationPreprocessor.class){
+				((AblationPreprocessor) pp).setClassifier(c);
+			}
 			newData = pp.preprocessTrain(data,i);
 			toReturn[i] = getAccuracyForClassifier(c,newData,iterationsToAvg,nFolds);
 		}

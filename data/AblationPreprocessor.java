@@ -39,7 +39,7 @@ public class AblationPreprocessor extends DataPreprocessor {
 		int toDelete;
 		int deleted;
 		for (int i=0; i<n; i++){
-			toDelete = featureErrors.get(featureErrors.firstKey());
+			toDelete = featureErrors.remove(featureErrors.firstKey());
 			deleted = unselected.remove(toDelete);
 			unwantedFeatures.add(deleted);
 		}
@@ -49,7 +49,12 @@ public class AblationPreprocessor extends DataPreprocessor {
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 	}
 	
-	private void setClassifier(Classifier c){
+	public DataSet preprocessTrain(DataSet data, int n, Classifier c){
+		setClassifier(c);
+		return preprocessTrain(data, n);
+	}
+	
+	public void setClassifier(Classifier c){
 		this.c = c;
 	}
 	

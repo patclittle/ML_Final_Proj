@@ -109,14 +109,15 @@ public class TestExperiments {
 	
 	private static double[] getNAccuraciesForPreProcessor(DataPreprocessor pp, Classifier c, DataSet data, int iterationsToAvg, int nFolds, int nFeatures){
 		double[] toReturn = new double[nFeatures];
-		DataSet newData = null;
 		toReturn[0] = getAccuracyForClassifier(c,data,iterationsToAvg,nFolds);
+		if(pp.getClass()== AblationPreprocessor.class){
+			((AblationPreprocessor) pp).setClassifier(c);
+		}
+		DataSet newData = pp.preprocessTrain(data, 1);
 		for (int i=1; i<nFeatures; i++){
-			if(pp.getClass()== AblationPreprocessor.class){
-				((AblationPreprocessor) pp).setClassifier(c);
-			}
-			newData = pp.preprocessTrain(data,i);
+			System.out.println(newData.getAllFeatureIndices().size());
 			toReturn[i] = getAccuracyForClassifier(c,newData,iterationsToAvg,nFolds);
+			newData = pp.preprocessTrain(newData,1);
 		}
 		return toReturn;
 	}

@@ -33,17 +33,17 @@ public class TestExperiments {
 		//datasets.add(new DataSet("/Users/plittle/workspace/ML_Final_Proj/src/titanic-train.perc.csv",DataSet.CSVFILE));
 		ArrayList<Classifier> cs = new ArrayList<Classifier>();
 		cs.add(new DecisionTreeClassifier());
-		cs.add(new GradientDescentClassifier());
-		cs.add(new KNNClassifier());
-		cs.add(new TwoLayerNN(7));
+		//cs.add(new GradientDescentClassifier());
+		//cs.add(new KNNClassifier());
+		//cs.add(new TwoLayerNN(7));
 		
 		ArrayList<DataPreprocessor> pps = new ArrayList<DataPreprocessor>();
-		pps.add(new RandomPreprocessor());
-		pps.add(new DTpreprocessor());
+		//pps.add(new RandomPreprocessor());
+		//pps.add(new DTpreprocessor());
 		pps.add(new AblationPreprocessor());
 		
 		for (DataSet data : datasets){
-			printTablesForClassifiers(pps,cs,data,1,10,3);
+			printTablesForClassifiers(pps,cs,data,1,10,6);
 		}
 		
 		

@@ -23,7 +23,7 @@ public class AblationPreprocessor extends DataPreprocessor {
 	public DataSet preprocessTrain(DataSet data, int n){
 		ArrayList<Example> examples = (ArrayList<Example>) data.getData().clone();
 		HashMap<Integer,String> featureMap = data.getFeatureMap();
-		//eliminate n random features
+		
 		ArrayList<Integer> unselected = new ArrayList<Integer>();
 		for (int i : data.getAllFeatureIndices()){
 			unselected.add(i);
@@ -39,8 +39,8 @@ public class AblationPreprocessor extends DataPreprocessor {
 		int toDelete;
 		int deleted;
 		for (int i=0; i<n; i++){
-			toDelete = featureErrors.remove(featureErrors.firstKey());
-			deleted = unselected.remove(toDelete);
+			toDelete = featureErrors.remove(featureErrors.lastKey());
+			deleted = unselected.remove(unselected.indexOf(toDelete));
 			unwantedFeatures.add(deleted);
 		}
 		for (int i : unselected){

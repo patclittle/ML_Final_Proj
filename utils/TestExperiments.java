@@ -30,8 +30,9 @@ public class TestExperiments {
 	public static void main(String[] args) {
 		ArrayList<DataSet> datasets = new ArrayList<DataSet>();
 		datasets.add(new DataSet("/Users/plittle/workspace/ML_Final_Proj/src/kr-vs-kp.data.csv",DataSet.CSVFILE));
+		(new AblationPreprocessor()).preprocessTrain(datasets.get(0),34);
 		//datasets.add(new DataSet("/Users/plittle/workspace/ML_Final_Proj/src/titanic-train.perc.csv",DataSet.CSVFILE));
-		ArrayList<Classifier> cs = new ArrayList<Classifier>();
+		/**ArrayList<Classifier> cs = new ArrayList<Classifier>();
 		cs.add(new DecisionTreeClassifier());
 		//cs.add(new GradientDescentClassifier());
 		//cs.add(new KNNClassifier());
@@ -44,7 +45,7 @@ public class TestExperiments {
 		
 		for (DataSet data : datasets){
 			printTablesForClassifiers(pps,cs,data,1,10,6);
-		}
+		}*/
 		
 		
 	}

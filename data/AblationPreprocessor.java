@@ -1,7 +1,10 @@
 package ml.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 import ml.classifiers.Classifier;
@@ -32,15 +35,22 @@ public class AblationPreprocessor extends DataPreprocessor {
 		usableFeatures = new HashMap<Integer,String>();
 		
 		//Setup for ablation study
-		TreeMap<Double,Integer> featureErrors = new TreeMap<Double,Integer>();
+		HashMap<Integer, Double> featureErrors = new HashMap<Integer, Double>();
 		for(int i : data.getAllFeatureIndices()){
-			featureErrors.put(conductAblationStudy(i,examples, data), i);
+			featureErrors.put(i, conductAblationStudy(i,examples, data));
 		}
-		int toDelete;
+		Collections.sort(unselected, new Comparator<Integer>(){
+			public int compare(Integer first, Integer second){
+				return -1*(featureErrors.get(first).compareTo(featureErrors.get(second)));
+			}
+		});
+		for(int i : unselected){
+			System.out.println(i+" : "+featureErrors.get(i));
+		}
 		int deleted;
 		for (int i=0; i<n; i++){
-			toDelete = featureErrors.remove(featureErrors.lastKey());
-			deleted = unselected.remove(unselected.indexOf(toDelete));
+			deleted = unselected.remove(0);
+			System.out.println("Removing "+deleted);
 			unwantedFeatures.add(deleted);
 		}
 		for (int i : unselected){

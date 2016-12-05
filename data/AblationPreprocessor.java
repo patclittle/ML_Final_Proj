@@ -44,13 +44,9 @@ public class AblationPreprocessor extends DataPreprocessor {
 				return -1*(featureErrors.get(first).compareTo(featureErrors.get(second)));
 			}
 		});
-		for(int i : unselected){
-			System.out.println(i+" : "+featureErrors.get(i));
-		}
 		int deleted;
 		for (int i=0; i<n; i++){
 			deleted = unselected.remove(0);
-			System.out.println("Removing "+deleted);
 			unwantedFeatures.add(deleted);
 		}
 		for (int i : unselected){

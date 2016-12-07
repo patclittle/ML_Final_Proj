@@ -17,6 +17,16 @@ import ml.data.DataPreprocessor;
 import ml.data.DataSet;
 import ml.utils.HashMapCounter;
 
+/**
+ * Implements the training error feature selection (decision tree)
+ * preprocessor, as described in lecture.
+ * 
+ *  Patrick Little and Molly Driscoll
+ * CS158 Final Project
+ * 
+ * @author plittle
+ *
+ */
 public class DTpreprocessor extends DataPreprocessor{
 	HashMap<Integer, String> usableFeatures;
 	ArrayList<Integer> unwantedFeatures;
@@ -27,22 +37,30 @@ public class DTpreprocessor extends DataPreprocessor{
 	
 	
 	/**
-	 * Takes out the unwanted features from the test data
-	 * @param test
-	 * @return
+	 * Preprocess test data, based on features removed in training
+	 * 
+	 * @param test - the dataset to preprocess
+	 * @return a copy of the dataset with features removed
 	 */
 	public DataSet preprocessTest(DataSet test) {
 		ArrayList<Example> examples = (ArrayList<Example>) test.getData().clone();
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 	}
 	
-	
+	/**
+	 * Preprocess training data, by removing the n worst features
+	 * as decided by a feature ablation study.
+	 * 
+	 * @param data - the dataset to preprocess
+	 * @param n - number of features to remove
+	 */
 	public DataSet preprocessTrain(DataSet data, int n){
 		ArrayList<Example> examples = (ArrayList<Example>) data.getData().clone();
 		Set<Integer> features = data.getAllFeatureIndices();
 		if(n >= features.size() + 1){
 			throw new RuntimeException("Trying to eliminate too many features");
 		}
+		//Collect feature errors, as decided by a decision tree
 		ArrayList<Map.Entry<Integer, Double>> featureErrors = new ArrayList<Map.Entry<Integer, Double>>();		
 		for(Integer f:features){
 			featureErrors.add(new AbstractMap.SimpleEntry<Integer, Double>(f, averageTrainingError(examples,f)));
@@ -63,12 +81,19 @@ public class DTpreprocessor extends DataPreprocessor{
 			Integer key = f.getKey();
 			usableFeatures.put(key, key.toString());
 		}
-		
+		//Return a copy of the dataset with worst features removed
 		return returnCopyWithFeatures(examples, usableFeatures, unwantedFeatures);
 
 	}
 	
-
+	/**
+	 * Returns the average training error if only the specified feature were used
+	 * to predict the data.
+	 * 
+	 * @param data - the list of examples to calculate training error for
+	 * @param featureIndex - the feature to split on
+	 * @return the average training error after splitting on the feature
+	 */
 	private double averageTrainingError(ArrayList<Example> data, int featureIndex){		
 		ArrayList<Example>[] splits = splitData(data, featureIndex);
 		
@@ -79,7 +104,12 @@ public class DTpreprocessor extends DataPreprocessor{
 		return 1-accuracy;
 	}
 	
-	
+	/**
+	 * Calculates the majority label for a set of examples
+	 * 
+	 * @param data - the set of examples
+	 * @return the majority label
+	 */
 	private DataMajority getMajorityLabel(ArrayList<Example> data){
 		HashMapCounter<Double> counter = new HashMapCounter<Double>();
 		
@@ -90,6 +120,7 @@ public class DTpreprocessor extends DataPreprocessor{
 		double maxLabel = 0.0;
 		int maxCount = -1;
 		
+		//Count majority label and count
 		for( Double key: counter.keySet() ){
 			if( counter.get(key) > maxCount ){
 				maxCount = counter.get(key);
@@ -97,6 +128,7 @@ public class DTpreprocessor extends DataPreprocessor{
 			}
 		}
 		
+		//Return majority information (label, count, confidence)
 		return new DataMajority(maxLabel, maxCount, ((double)maxCount)/data.size());
 	}
 	
@@ -108,11 +140,11 @@ public class DTpreprocessor extends DataPreprocessor{
 	 * @return the split of the data.  Entry 0 is the left branch data and entry 1 the right branch data.
 	 */
 	private ArrayList<Example>[] splitData(ArrayList<Example> data, int featureIndex){
-		// split the data based on this feature
 		ArrayList<Example>[] splits = new ArrayList[2];
 		splits[0] = new ArrayList<Example>();
 		splits[1] = new ArrayList<Example>();
-				
+		
+		// split the data based on this feature
 		for( Example d: data){
 			double value = d.getFeature(featureIndex);
 			
@@ -126,7 +158,15 @@ public class DTpreprocessor extends DataPreprocessor{
 		return splits;
 	}
 	
+	/**
+	 * Class for representing information about the majority labels of a set of data
+	 * 
+	 * @author plittle
+	 *
+	 */
 	private class DataMajority{
+		
+		//Stored information
 		public double majorityLabel;
 		public int majorityCount;
 		public double confidence;

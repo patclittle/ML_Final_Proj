@@ -6,6 +6,9 @@ import java.util.HashMap;
 /**
  * Interface defining the data preprocessing
  * 
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project 
+ * 
  * @author dkauchak
  *
  */
@@ -28,7 +31,14 @@ public class DataPreprocessor {
 		return null;
 	}
 	
-	
+	/**
+	 * Returns a new dataset from the examples, using only the usable features
+	 * 
+	 * @param examples - the examples to construct a new dataset from
+	 * @param usableFeatures - the features to use in the new dataset
+	 * @param unwantedFeatures - the features to remove from the old dataset
+	 * @return a copy of the dataset with the specified features removed
+	 */
 	protected DataSet returnCopyWithFeatures(ArrayList<Example> examples, HashMap<Integer,String> usableFeatures, ArrayList<Integer> unwantedFeatures){
 		DataSet newData = new DataSet(usableFeatures);
 		//remove unwanted features

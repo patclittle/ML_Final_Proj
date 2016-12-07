@@ -7,7 +7,8 @@ import java.util.Random;
 /**
  * Data set for storing and retrieving an n-fold cross validation data set.
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

@@ -11,7 +11,8 @@ import java.util.Set;
 /**
  * Class for counting occurrence of objects in a HashMap.
  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

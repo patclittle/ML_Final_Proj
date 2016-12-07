@@ -8,7 +8,8 @@ import ml.data.Example;
 /**
  * A classifier that randomly labels examples as either 0 or 1.
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

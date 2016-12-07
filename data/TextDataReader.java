@@ -16,7 +16,8 @@ import ml.utils.HashMapCounter;
  * Each example should be a single line in the file.  The line should start with a numerical
  * label and then the words of the example should follow with each word separated by whitespace.
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

@@ -14,9 +14,9 @@ import ml.utils.HashMapCounter;
  * 
  * The classifier handles non-binary features, however, when deciding on splits it
  * considers splitting by comparing zero vs. non-zero for each feature.
- *  *
- * Patrick Little, Assignment 8
  * 
+ *  Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * @author dkauchak
  *
  */

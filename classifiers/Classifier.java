@@ -6,7 +6,8 @@ import ml.data.Example;
 /**
  * Interface for a classifier.
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

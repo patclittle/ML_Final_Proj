@@ -9,7 +9,8 @@ import java.util.Set;
 /**
  * A class to represent an example
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  */

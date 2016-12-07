@@ -8,9 +8,8 @@ public class ClassifierTimer {
 	/**
 	 * Calculates the time to train and test the classifier averaged over numRuns on
 	 * 80/20 splits of the data
-	 *  *
- * Patrick Little, Assignment 8
- * 
+	 *  Patrick Little and Molly Driscoll
+ * CS158 Final Project
 	 * @param classifier
 	 * @param dataset 
 	 */

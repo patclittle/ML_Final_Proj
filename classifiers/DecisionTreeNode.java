@@ -5,7 +5,8 @@ import java.util.Map;
 /**
  * Class representing a node in a decision tree (both internal and leaf)
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

@@ -11,7 +11,8 @@ import ml.utils.HashMapCounter;
 /**
  * KNN Classifier
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author plittle
  *

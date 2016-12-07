@@ -14,7 +14,8 @@ import ml.data.Example;
  * Gradient descent classifier allowing for two different loss functions and
  * three different regularization settings.
  * 
- * Patrick Little, Assignment 7
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  *

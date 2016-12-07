@@ -15,7 +15,8 @@ import java.util.Set;
 /**
  * A collections of examples representing an entire data set.
  *  *
- * Patrick Little, Assignment 8
+ * Patrick Little and Molly Driscoll
+ * CS158 Final Project
  * 
  * @author dkauchak
  */
